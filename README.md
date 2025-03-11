@@ -39,19 +39,25 @@ A infraestrutura é baseada em:
 ## 📌 3. Configuração do Servidor e WordPress
 
 ### 1️⃣ Conectando via SSH
-``bash
-ssh -i "sua-chave.pem" ubuntu@SEU_IP_PUBLICO``
+```
+bash
+ssh -i "sua-chave.pem" ubuntu@SEU_IP_PUBLICO
+
+```
 
 ---
 
 ### 2️⃣ Instalando Docker e Dependências
 
-``export DEBIAN_FRONTEND=noninteractive
+```
+export DEBIAN_FRONTEND=noninteractive
 sudo apt update -y && sudo apt upgrade -y
 sudo apt install -y docker.io docker-compose git nfs-common mysql-server
 sudo systemctl start docker
 sudo systemctl enable docker
-sudo usermod -aG docker ubuntu``
+sudo usermod -aG docker ubuntu
+
+```
 
 ---
 
@@ -80,9 +86,13 @@ echo "$EFS_ID.efs.$REGION.amazonaws.com:/ /mnt/efs nfs4 defaults,_netdev 0 0" | 
 
 Vá para RDS > Create Database.
 Escolha MySQL e configure:
-  ``Username: admin
+  ```
+  Username: admin
   Password: SUA_SENHA_SEGURA
-  Habilite acesso público (para teste).``
+  Habilite acesso público (para teste).
+
+  ```
+
 Finalize e copie o endpoint do banco de dados
 
 ---
