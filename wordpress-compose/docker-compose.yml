@@ -1,41 +1,41 @@
-version: '3.9'
+#!/bin/bash
 
+sudo yum update -y
+sudo yum install -y docker
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo usermod -a -G docker ec2-user
+
+sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+
+sudo yum install -y amazon-efs-utils
+sudo systemctl start amazon-efs-utils
+sudo systemctl enable amazon-efs-utils
+
+sudo mkdir /mnt/efs
+
+sudo echo "fs-01c2ceb042e154ac1.efs.us-east-1.amazonaws.com:/ /mnt/efs nfs4 nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport,_netdev 0 0" >> /etc/fstab
+sudo mount -a
+
+sudo mkdir /mnt/efs/wordpress
+
+
+sudo cat <<EOF > /mnt/efs/docker-compose.yaml
+version: '3.8'
 services:
-  db:
-    image: mysql:5.7
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${DB_NAME}
-      MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
-    volumes:
-      - db_data:/var/lib/mysql
-    networks:
-      - wordpress-network
-
   wordpress:
-    depends_on:
-      - db
     image: wordpress:latest
     restart: always
     ports:
-      - 8000:80
+      - 80:80
     environment:
-      WORDPRESS_DB_HOST: db
-      WORDPRESS_DB_USER: ${DB_USER}
-      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
-      WORDPRESS_DB_NAME: ${DB_NAME}
+      WORDPRESS_DB_HOST: bancocayo.cn0q06k0uoyw.us-east-1.rds.amazonaws.com
+      WORDPRESS_DB_NAME: wordpressdb
+      WORDPRESS_DB_USER: bancocayo
+      WORDPRESS_DB_PASSWORD: 123456789F
     volumes:
-      - wordpress_data:/var/www/html
-    networks:
-      - wordpress-network
+      - /mnt/efs/wordpress:/var/www/html
+EOF
 
-volumes:
-  db_data:
-  wordpress_data:
-
-networks:
-  wordpress-network:
-    driver: bridge
-
+docker-compose -f /mnt/efs/docker-compose.yaml up -d
