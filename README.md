@@ -5,10 +5,11 @@ Este projeto configura um ambiente na AWS para rodar o **WordPress** utilizando 
 
 ## 📌 1. Arquitetura do Projeto
 A infraestrutura é baseada em:
-✅ **EC2** (Servidor de aplicação rodando WordPress em container Docker)  
-✅ **EFS** (Armazenamento persistente para os arquivos do WordPress)  
-✅ **RDS MySQL** (Banco de dados gerenciado para o WordPress)  
-✅ **ALB (Load Balancer)** (Distribuição de tráfego entre múltiplas instâncias)  
+
+  ✅ **EC2** (Servidor de aplicação rodando WordPress em container Docker)  
+  ✅ **EFS** (Armazenamento persistente para os arquivos do WordPress)  
+  ✅ **RDS MySQL** (Banco de dados gerenciado para o WordPress)  
+  ✅ **ALB (Load Balancer)** (Distribuição de tráfego entre múltiplas instâncias)  
 
 ---
 
