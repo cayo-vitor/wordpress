@@ -183,7 +183,3 @@ Ao longo do processo, configuramos a infraestrutura necessária, garantindo pers
 ✅ Balanceamento de Carga → Configuramos um Application Load Balancer (ALB) para distribuir o tráfego entre múltiplas instâncias EC2.
 
 ✅ Versionamento de Código → Criamos um repositório Git para manter o controle das versões e facilitar futuras melhorias.
-
-Com essa abordagem, conseguimos criar um ambiente modular, escalável e de fácil manutenção, permitindo futuras expansões e adaptações conforme necessário. 🚀
-
-Este projeto pode ser utilizado como base para outras aplicações web que precisam de alta disponibilidade e confiabilidade na AWS.
