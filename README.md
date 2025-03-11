@@ -74,11 +74,13 @@ sudo usermod -aG docker ubuntu
 
 ### 2️⃣ Montando o EFS na EC2
 
-``EFS_ID="fs-xxxxxxxxxx"
+```
+EFS_ID="fs-xxxxxxxxxx"
 REGION="us-east-1"
 sudo mkdir -p /mnt/efs/wordpress
 sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 $EFS_ID.efs.$REGION.amazonaws.com:/ /mnt/efs
-echo "$EFS_ID.efs.$REGION.amazonaws.com:/ /mnt/efs nfs4 defaults,_netdev 0 0" | sudo tee -a /etc/fstab``
+echo "$EFS_ID.efs.$REGION.amazonaws.com:/ /mnt/efs nfs4 defaults,_netdev 0 0" | sudo tee -a /etc/fstab
+```
 
 ---
 
