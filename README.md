@@ -101,7 +101,7 @@ Finalize e copie o endpoint do banco de dados
 
 ## 📌 6. Criando o docker-compose.yml
 
-Na criação do dokcer-compose.yml eu usei o siguinte script 
+Na criação do dokcer-compose.yml eu usei o seguinte script 
 ```
 #!/bin/bash
 
